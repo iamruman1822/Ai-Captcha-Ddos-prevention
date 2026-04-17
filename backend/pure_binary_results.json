@@ -1,0 +1,20 @@
+{
+  "model": "XGBoost Pure Binary",
+  "description": "Trained on confirmed Benign and Attack only",
+  "suspicious_rows": "Excluded from training",
+  "dataset": "BCCC-2024 + CICIDS2017 merged and cleaned",
+  "total_rows": 200000,
+  "training_rows": 160000,
+  "test_rows": 40000,
+  "features_used": 33,
+  "f1_weighted": 0.9689,
+  "f1_macro": 0.9689,
+  "false_pos_rate": 0.0151,
+  "false_neg_rate": 0.0471,
+  "training_time_s": 2.8,
+  "grade": "\u2705 Good \u2014 strong minor project",
+  "optimal_threshold": 0.45,
+  "f1_at_threshold": 0.9689,
+  "fp_rate_at_threshold": 0.01595,
+  "fn_rate_at_threshold": 0.04615
+}
