@@ -1,0 +1,332 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SETTINGS PAGE — ZeroDay Redesign
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.settings-page .page {
+  padding: 30px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 10%, rgba(74,158,255,0.02) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+.settings-page .settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  width: 100%;
+  min-height: calc(100vh - 44px - 96px);
+  align-items: stretch;
+}
+
+.settings-page .stack-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 0;
+}
+
+.settings-page .stack-col > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.settings-page .stack-col > div .card {
+  flex: 1;
+}
+
+/* ── Section Label — unique ◆── pattern ──────────────────────────────── */
+.settings-page .sec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.settings-page .sec-label::before {
+  content: '◆';
+  font-size: 7px;
+  opacity: 0.6;
+}
+
+.settings-page .sec-label::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  vertical-align: middle;
+}
+
+/* ── Section Icon Badge ──── */
+.settings-page .sec-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  border-radius: 100px;
+}
+
+/* ── Cards ──── */
+.settings-page .card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-default);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  transition: border-color 0.3s;
+}
+
+.settings-page .card:hover {
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ── Preference Rows ──── */
+.settings-page .pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.settings-page .pref-row:last-child {
+  border-bottom: none;
+}
+
+.settings-page .pref-row-inline {
+  align-items: center;
+}
+
+.settings-page .pref-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.settings-page .pref-title {
+  font-size: 13px;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+.settings-page .pref-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── Mini Switch ──── */
+.settings-page .mini-switch {
+  width: 42px;
+  height: 24px;
+  border: 1px solid var(--border-default);
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
+  flex-shrink: 0;
+}
+
+.settings-page .mini-switch .knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s;
+}
+
+.settings-page .mini-switch.on {
+  background: var(--accent-dim);
+  border-color: rgba(0,212,170,0.4);
+}
+
+.settings-page .mini-switch.on .knob {
+  transform: translateX(16px);
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ── Select Input ──── */
+.settings-page .input-select {
+  min-width: 150px;
+  background: rgba(8,12,20,0.8);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 9px 12px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s;
+}
+
+.settings-page .input-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ── Activity List ──── */
+.settings-page .activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-page .activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.settings-page .activity-item:last-child {
+  border-bottom: none;
+}
+
+.settings-page .activity-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.settings-page .activity-dot.ok   { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
+.settings-page .activity-dot.warn { background: var(--amber); box-shadow: 0 0 6px rgba(245,166,35,0.3); }
+
+.settings-page .activity-text {
+  font-size: 12px;
+  color: var(--text-primary);
+  flex: 1;
+  font-weight: 500;
+}
+
+.settings-page .activity-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ── Info Rows ──── */
+.settings-page .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.settings-page .row:last-child {
+  border-bottom: none;
+}
+
+.settings-page .row-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  width: 88px;
+  flex-shrink: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.settings-page .row-value {
+  font-size: 13px;
+  color: var(--text-primary);
+  flex: 1;
+  font-weight: 500;
+}
+
+/* ── Buttons ──── */
+.settings-page .btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.settings-page .btn {
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 12px 20px;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.settings-page .btn-neutral {
+  border-color: var(--border-default);
+  color: var(--text-secondary);
+}
+
+.settings-page .btn-neutral:hover {
+  border-color: rgba(255,255,255,0.15);
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.settings-page .btn-danger {
+  border-color: var(--red-dim);
+  color: var(--red);
+  background: var(--red-dim);
+}
+
+.settings-page .btn-danger:hover {
+  background: rgba(255,85,101,0.18);
+  box-shadow: 0 0 12px rgba(255,85,101,0.08);
+}
+
+/* ── Responsive ──── */
+@media (max-width: 768px) {
+  .settings-page .page {
+    padding: 20px 14px;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .settings-page .settings-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    min-height: 0;
+  }
+
+  .settings-page .stack-col { gap: 16px; }
+  .settings-page .stack-col > div { flex: initial; }
+
+  .settings-page .pref-row-inline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .settings-page .input-select { width: 100%; }
+}

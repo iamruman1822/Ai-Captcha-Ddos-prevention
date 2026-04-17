@@ -1,0 +1,356 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   DDOS PAGE — ZeroDay Redesign
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ddos-page .page {
+  padding: 30px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  background:
+    radial-gradient(ellipse 50% 40% at 30% 15%, rgba(255,85,101,0.02) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+/* ── Section Label — unique ◆── pattern ──────────────────────────────── */
+.ddos-page .sec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.ddos-page .sec-label::before {
+  content: '◆';
+  font-size: 7px;
+  opacity: 0.6;
+}
+
+.ddos-page .sec-label::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  vertical-align: middle;
+}
+
+/* ── Cards ──── */
+.ddos-page .card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-default);
+  padding: 24px 26px;
+  border-radius: var(--radius-md);
+  transition: border-color 0.3s;
+}
+
+.ddos-page .card:hover {
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ── Toggle Rows ──── */
+.ddos-page .toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.ddos-page .toggle-row + .toggle-row {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ddos-page .t-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ddos-page .t-title {
+  font-size: 14px;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+.ddos-page .t-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+/* ── Custom Switch ──── */
+.ddos-page .sw-wrap {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ddos-page .sw-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.ddos-page .sw-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 15px;
+  height: 15px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s;
+}
+
+.ddos-page .sw-on-label,
+.ddos-page .sw-off-label {
+  font-size: 10px;
+  position: absolute;
+  left: 52px;
+  top: 5px;
+  letter-spacing: 0.8px;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  pointer-events: none;
+  font-weight: 600;
+}
+
+.ddos-page .sw-on-label  { color: var(--accent); opacity: 0; }
+.ddos-page .sw-off-label { color: var(--text-muted); opacity: 1; }
+
+.ddos-page .sw-wrap.on .sw-track {
+  background: var(--accent-dim);
+  border-color: rgba(0,212,170,0.4);
+}
+
+.ddos-page .sw-wrap.on .sw-thumb {
+  background: var(--accent);
+  transform: translateX(20px);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.ddos-page .sw-wrap.on .sw-on-label  { opacity: 1; }
+.ddos-page .sw-wrap.on .sw-off-label { opacity: 0; }
+
+/* ── Code Card ──── */
+.ddos-page .code-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-default);
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.ddos-page .tab-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+.ddos-page .tabs { display: flex; }
+
+.ddos-page .tab {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  padding: 12px 22px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.ddos-page .tab:hover { color: var(--text-primary); }
+.ddos-page .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.ddos-page .copy-btn {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 5px 14px;
+  border: 1px solid var(--border-default);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  margin-right: 14px;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+
+.ddos-page .copy-btn:hover,
+.ddos-page .copy-btn.copied {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.ddos-page .code-block {
+  padding: 20px 22px;
+  background: rgba(4, 6, 12, 0.8);
+  height: 320px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.ddos-page pre {
+  font-size: 12px;
+  line-height: 1.85;
+  font-family: var(--font-mono);
+  white-space: pre;
+  color: var(--text-primary);
+}
+
+/* ── Feed Section ──── */
+.ddos-page .feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ddos-page .feed-header .sec-label { margin-bottom: 0; }
+
+.ddos-page .live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.ddos-page .feed-rps {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  width: 72px;
+  text-align: right;
+}
+
+.ddos-page .feed-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 52px;
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.ddos-page .feed-label.legit      { color: var(--accent); }
+.ddos-page .feed-label.suspicious { color: var(--amber); }
+.ddos-page .feed-label.malicious  { color: var(--red); }
+
+.ddos-page .feed-empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px 0;
+  letter-spacing: 0.3px;
+}
+
+/* ── Feed + Accuracy Row ──── */
+.ddos-page .feed-accuracy-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 18px;
+}
+
+.ddos-page .accuracy-card {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ddos-page .accuracy-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
+.ddos-page .accuracy-title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ddos-page .accuracy-model {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.ddos-page .detection-ring-row {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.ddos-page .detection-ring {
+  width: 84px;
+  height: 84px;
+  filter: drop-shadow(0 0 8px rgba(255,85,101,0.15));
+}
+
+.ddos-page .detection-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.ddos-page .detection-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ddos-page .detection-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.ddos-page .detection-stat-label {
+  font-size: 8px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+}
+
+/* ── Responsive ──── */
+@media (max-width: 768px) {
+  .ddos-page .page { padding: 20px 14px; }
+  .ddos-page .code-block { height: 260px; }
+  .ddos-page .feed-accuracy-row { grid-template-columns: 1fr; }
+}
